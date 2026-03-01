@@ -1,6 +1,10 @@
 {
   "name": "cconnect",
   "version": "1.0.0",
+  "main":"index.js",
+  "engines":{
+    "node": ">=18.0.0" 
+  },
   "private": true,
   "scripts": {
     "build": "npm install --prefix backend && npm install --prefix frontend/Cconnect && npm run build --prefix frontend/Cconnect",
