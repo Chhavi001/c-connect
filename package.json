@@ -1,9 +1,9 @@
 {
   "name": "cconnect",
   "version": "1.0.0",
-  "main":"index.js",
-  "engines":{
-    "node": ">=18.0.0" 
+  "main": "index.js",
+  "engines": {
+    "node": ">=18.0.0"
   },
   "private": true,
   "scripts": {
@@ -16,7 +16,6 @@
   "devDependencies": {
     "concurrently": "^9.1.2"
   },
-  "main": "index.js",
   "dependencies": {
     "ansi-regex": "^5.0.1",
     "ansi-styles": "^4.3.0",
@@ -30,6 +29,7 @@
     "has-flag": "^4.0.0",
     "is-fullwidth-code-point": "^3.0.0",
     "require-directory": "^2.1.1",
+    "resend": "^6.9.3",
     "rxjs": "^7.8.2",
     "shell-quote": "^1.8.3",
     "string-width": "^4.2.3",

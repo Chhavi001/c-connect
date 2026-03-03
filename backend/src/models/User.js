@@ -1,25 +1,27 @@
-import mongoose from "mongoose";
+import  mongoose from "mongoose";
 const userSchema=new mongoose.Schema({
   email:{
     type: String,
     required: true,
-    unique: true,
+    unique:true,
   },
   fullName:{
-    type: String,
+    type:String,
     required: true,
   },
   password:{
-    type: String,
+    type:String,
     required: true,
-    minlength: 6
+    minlength:6
   },
   profilePic:{
-    type: String,
+    type:String,
     default: "",
   }
-}, {timestamps: true});
+},{timestamps:true}  //createedAt and updatedAt fields automatically
+);
 
+//last login:
 const User=mongoose.model("User",userSchema);
 
 export default User;
