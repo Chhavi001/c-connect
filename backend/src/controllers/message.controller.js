@@ -14,18 +14,18 @@ export const getAllContacts = async (req, res) => {
 
 export const getMessageByUseId=async(req,res)=>{
   try{
-     const myId=req.user._id;
-     const {id:userToChatId}=req.params;
+    const myId=req.user._id;
+    const {id:userToChatId}=req.params;
       // me and you are chatting then following may be the cases
       //i send you the message
       // you send me the message
-     const message=await Message.find({
+    const message=await Message.find({
       $or:[
         {senderId:myId,receiverId:userToChatId},
         {senderId:userToChatId,receiverId:myId}
       ],
-     });
-     res.status(200).json(message);
+    });
+    res.status(200).json(message);
   }catch(error){
     console.error("Error fetching messages:", error.message);
     res.status(500).json({ error: "Failed to fetch messages" });
@@ -37,6 +37,24 @@ export const sendMessage=async(req,res)=>{
     const {text,image}=req.body;
     const {id:receiverId}=req.params;
     const senderId=req.user._id;
+    
+
+    if(!text && !image){
+      return res.status(400).json({message:"Text or image is required."});
+    }
+    if(senderId.equals(receiverId)){
+      return res.status(400).json({message:"You cannot send message to yourself."});
+    }
+
+    const receiverExists=await User.exists({_id: receiverId});
+    if(!receiverExists){
+      return res.status(404).json({message:"Receiver not found."});  
+    }
+  
+
+
+
+
 
     let imageUrl;
     if(image){
@@ -72,9 +90,9 @@ export const getChatPartners=async(req,res)=>{
       $or:[{senderId:loggedInUserId},{receiverId:loggedInUserId}],
     });
 
-    const chatPartnerIds= [...newmessages.map((msg)=>{
+    const chatPartnerIds= [...messages.map((msg)=>{
       return msg.senderId.toString()===loggedInUserId.toString()?msg.receiverId.toString():msg.senderId.toString();
-    ),];
+    })];
     const chatPartners=await User.find({_id:{$in:chatPartnerIds}}).select("-password");
     
     res.status(200).json(chatPartners);
