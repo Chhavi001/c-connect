@@ -37,6 +37,7 @@
     "resend": "^6.9.3",
     "rxjs": "^7.8.2",
     "shell-quote": "^1.8.3",
+    "socket.io": "^4.8.3",
     "string-width": "^4.2.3",
     "strip-ansi": "^6.0.1",
     "supports-color": "^8.1.1",
