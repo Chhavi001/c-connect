@@ -25,6 +25,6 @@ export const socketAuthMiddleware=async(socket,next)=>{
     next();
   }catch(error){
     console.error("Socket authentication error:", error);
-    res.status(500).json({message:"Internal server error"});
+    next(new Error("Internal server error"));
   }
 };

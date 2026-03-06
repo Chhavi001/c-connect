@@ -13,8 +13,8 @@ export const generateToken=(userId,res)=>{
   res.cookie("jwt",token,{
     maxAge:7*24*60*60*1000,
     httpOnly:true, //prevent XSS attacks by restricting access to cookie from client-side scripts
-    sameSite:"strict", //prevent CSRF attacks by ensuring cookie is sent only in same-site requests
-    secure:ENV.NODE_ENV === "development" ? false:true,
+    sameSite:ENV.NODE_ENV === "production" ? "none" : "strict", //"none" needed for cross-origin (Vercel->Render)
+    secure:ENV.NODE_ENV === "production",
   });
   return token;
 };
