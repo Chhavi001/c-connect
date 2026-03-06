@@ -1,6 +1,9 @@
 
-import { useState } from "react-router";
+import { useState } from "react";
 import { useAuthStore } from "../store/useAuthStore";
+import BorderAnimatedContainer from "../components/BorderAnimatedContainer";
+import { MessageCircleIcon, LockIcon, MailIcon, UserIcon, LoaderIcon } from "lucide-react";
+import { Link } from "react-router";
 
 function LoginPage(){
   const [formData, setFormData]=useState({email:"",password:""});
@@ -68,12 +71,11 @@ function LoginPage(){
                   </div>
                   {/* submit button */}
                   <div className="auth-btn">
-                    <
+                    <button
                       type="submit"
                       disabled={isLoggingIn}
                       className={`w-full flex items-center justify-center bg-cyan-500 hover:bg-cyan-600 text-white font-semibold py-2 px-4 rounded ${isLoggingIn ? "cursor-not-allowed opacity-70" : ""}`}
                     >
-                      <butto clsdsName="auth-btn" type="submit" disabled={isLoggingIn}></butto
                       {isLoggingIn ? (
                         <>
                           <LoaderIcon className="w-4 h-4 mr-2 animate-spin" />
@@ -87,9 +89,9 @@ function LoginPage(){
                 </form>
 
                 <div className="mt-6 text-center">
-                  <link to="/signup" className="text-cyan-400 hover:text-cyan-300">
+                  <Link to="/signup" className="text-cyan-400 hover:text-cyan-300">
                     Don't have an account? Sign up
-                  </link>
+                  </Link>
                 </div>
               </div>
             </div>
