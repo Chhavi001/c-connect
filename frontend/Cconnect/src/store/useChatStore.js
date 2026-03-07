@@ -1,4 +1,3 @@
-import { Subscriber } from "rxjs";
 import {create} from "zustand";
 import {axiosInstance}  from "../lib/axios";
 import toast from "react-hot-toast";
@@ -6,7 +5,7 @@ import {useAuthStore} from "./useAuthStore";
 const notificationSound=new Audio("/notification.mp3");
 export const useChatStore=create((set,get)=>({
   allContacts:[],
-  Chats:[],
+  chats:[],
   messages:[],
   activeTab:"chats",
   selectedUser:null,
@@ -26,7 +25,7 @@ export const useChatStore=create((set,get)=>({
       const res=await axiosInstance.get("/messages/contacts");
       set({allContacts:res.data});
     }catch(error){
-      Toast.error(error.response.data.message);
+      toast.error(error.response.data.message);
     }finally{
       set({isUsersLoading:false});
     }
@@ -35,9 +34,9 @@ export const useChatStore=create((set,get)=>({
     set({isUsersLoading:true});
     try{
       const res=await axiosInstance.get("/messages/my-chats");
-      set({Chats:res.data});
+      set({chats:res.data});
     }catch(error){
-      Toast.error(error.response.data.message);
+      toast.error(error.response.data.message);
     }finally{
       set({isUsersLoading:false});
     }
@@ -50,7 +49,7 @@ export const useChatStore=create((set,get)=>({
       const res=await axiosInstance.get(`/messages/${userId}`);
       set({messages:res.data});
     }catch(error){
-      Toast.error(error.response?.data?.message || "Something went wrong");
+      toast.error(error.response?.data?.message || "Something went wrong");
     }finally{
       set({isMessagesLoading:false});
     }

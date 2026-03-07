@@ -12,7 +12,7 @@ function useKeyboardSound() {
   const playRandomKeyStrokeSound=()=>{
     const randomSound=keyStrokeSounds[Math.floor(Math.random()*keyStrokeSounds.length)];
     randomSound.currentTime=0; // this is for better UX ,def add this line to all sound effects in the app
-    randomSound.play().catch(error)=>console.log("Audio play failed",error));
+    randomSound.play().catch((error)=>console.log("Audio play failed",error));
   }
   return {playRandomKeyStrokeSound}
 }

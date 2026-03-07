@@ -4,7 +4,7 @@ import { useChatStore } from "../store/useChatStore";
 import ChatHeader from "./ChatHeader";
 import NoChatHistoryPlaceholder from "./NoChatHistoryPlaceholder";
 import MessageInput from "./MessageInput";
-import MessagesLoadingSkeleton from "./MessagesLoadingSkeleton";
+import MessagesLoadingSkeleton from "./MessageLoadingSkeleton";
 
 function ChatContainer() {
   const {
@@ -31,6 +31,7 @@ function ChatContainer() {
       messageEndRef.current.scrollIntoView({ behavior: "smooth" });
     }
   }, [messages]);
+  
 
   return (
     <>
